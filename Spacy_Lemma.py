@@ -13,11 +13,11 @@ nlp = spacy.load('en')
 print(nlp.pipeline)
 
 #Load Data
-IMDB_train_load = pd.read_csv()
-IMDB_train_load['spaced'] = IMDB_train_load.text.apply(nlp)
+Texts_train_load = pd.read_csv()
+Texts_train_load['spaced'] = Texts_train_load.text.apply(nlp)
 
-IMDB_test_load = pd.read_csv()
-IMDB_test_load['spaced'] = IMDB_test_load.text.apply(nlp)
+Texts_test_load = pd.read_csv()
+Texts_test_load['spaced'] = Texts_test_load.text.apply(nlp)
 
 def spacy_lemma_stop(data):
     corpus = list()
@@ -30,13 +30,13 @@ def spacy_lemma_stop(data):
         corpus.append(words)  
     return corpus
   
-IMDB_train_load['lemma'] = spacy_lemma_stop(IMDB_train_load)
-IMDB_test_load['lemma'] = spacy_lemma_stop(IMDB_test_load)
+Texts_train_load['lemma'] = spacy_lemma_stop(Texts_train_load)
+Texts_test_load['lemma'] = spacy_lemma_stop(Texts_test_load)
 
-IMDB_train_load = IMDB_train_load.drop(columns=['spaced', 'text'])
-IMDB_train_load = IMDB_train_load.rename(index=str, columns={"lemma": "text"})
-IMDB_train_load.to_csv(, index=False)
+Texts_train_load = Texts_train_load.drop(columns=['spaced', 'text'])
+Texts_train_load = Texts_train_load.rename(index=str, columns={"lemma": "text"})
+Texts_train_load.to_csv(, index=False)
 
-IMDB_test_load = IMDB_test_load.drop(columns=['spaced','text'])
-IMDB_test_load = IMDB_test_load.rename(index=str, columns={"lemma": "text"})
-IMDB_test_load.to_csv(, index=False)
+Texts_test_load = Texts_test_load.drop(columns=['spaced','text'])
+Texts_test_load = Texts_test_load.rename(index=str, columns={"lemma": "text"})
+Texts_test_load.to_csv(, index=False)
